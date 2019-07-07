@@ -1,0 +1,15 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+    name: payment
+spec:
+    replicas: 3
+    template:
+        metadata:
+           name: payment
+           labels:
+               app: payment
+        spec:
+           containers:
+           - image: jnupeter/payment:v1
+             name: payment-container
