@@ -121,3 +121,44 @@ kubectl get pods
 ```
 should see a new one spin up.
 
+# Linkerd demo
+
+## install the demo app
+```
+curl -sL https://run.linkerd.io/emojivoto.yml \
+  | kubectl apply -f -
+```
+
+then export web app to localhost:8080 with
+
+```
+kubectl -n emojivoto port-forward svc/web-svc 8080:80
+```
+
+## generate some errors
+Click on a doughnut emoji
+
+## watch the pods
+```
+kubectl -n emojivoto get pods
+```
+pay attention to the number of containers in those pods.
+
+## add linkerd to the Emojivoto app
+by running
+```
+kubectl get -n emojivoto deploy -o yaml \
+  | linkerd inject - \
+  | kubectl apply -f -
+```
+
+## watch the pods again
+```
+kubectl -n emojivoto get pods
+```
+
+pay attention to the number of containers, and use
+```
+kubectl -n emojivote describe pod {pod-name}
+```
+what container has been injected?
