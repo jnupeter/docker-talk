@@ -159,6 +159,15 @@ kubectl -n emojivoto get pods
 
 pay attention to the number of containers, and use
 ```
-kubectl -n emojivote describe pod {pod-name}
+kubectl -n emojivoto describe pod {pod-name}
 ```
 what container has been injected?
+
+## service dependency diagram
+```
+linkerd dashboard &
+```
+Then show the service dependencies, via menu "Namespace" -> "emojivoto".
+
+Note that "meshed" tag.
+## debugging services
